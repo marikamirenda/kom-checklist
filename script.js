@@ -1,5 +1,5 @@
 const STORAGE_KEY = "kom_checklist_state_v1";
-
+const REQUEST_EMAILS_KEY = "kom_request_emails_v1"; // memorizza email usate di recente (mock)
 let checklistData = null;
 let state = loadState(); // { [id]: true/false }
 
