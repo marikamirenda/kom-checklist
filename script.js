@@ -95,10 +95,9 @@ function renderChecklist(data) {
         requestBtn.disabled = checkbox.checked;
       });
 
-      requestBtn.addEventListener("click", () => {
+     requestBtn.addEventListener("click", () => {
   openRequestModal(item);
 });
-      });
 
       actions.appendChild(requestBtn);
 
