@@ -2,7 +2,8 @@ const STORAGE_KEY = "kom_checklist_state_v1";
 const REQUEST_EMAILS_KEY = "kom_request_emails_v1"; // memorizza email usate di recente (mock)
 let checklistData = null;
 let state = loadState(); // { [id]: true/false }
-
+let modal = null;
+let modalContext = null; // { itemId, itemText, subject, message }
 init();
 
 function init() {
@@ -11,7 +12,8 @@ function init() {
     .then(data => {
       checklistData = data;
       renderChecklist(data);
-      wireTopButtons();
+      wireTopButtons(); 
+      initModal();
     })
     .catch(err => console.error("Failed to load checklist.json", err));
 }
@@ -94,8 +96,8 @@ function renderChecklist(data) {
       });
 
       requestBtn.addEventListener("click", () => {
-        const payload = buildSingleRequestPayload(item);
-        dispatchRequest(payload);
+  openRequestModal(item);
+});
       });
 
       actions.appendChild(requestBtn);
@@ -200,4 +202,112 @@ function downloadJson(obj, filename) {
   a.click();
   a.remove();
   URL.revokeObjectURL(url);
+}
+function initModal() {
+  modal = document.getElementById("requestModal");
+  const btnClose = document.getElementById("modalClose");
+  const btnCancel = document.getElementById("modalCancel");
+  const btnSend = document.getElementById("modalSend");
+
+  btnClose.addEventListener("click", closeModal);
+  btnCancel.addEventListener("click", closeModal);
+
+  // Click fuori dalla card = chiudi
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Invio (mock)
+  btnSend.addEventListener("click", () => {
+    const emailInput = document.getElementById("modalEmail");
+    const error = document.getElementById("modalEmailError");
+    const messageBox = document.getElementById("modalMessage");
+
+    const email = (emailInput.value || "").trim();
+    if (!isValidEmail(email)) {
+      error.classList.remove("hidden");
+      return;
+    }
+    error.classList.add("hidden");
+
+    const payload = {
+      type: "single_missing_email_mock",
+      itemId: modalContext.itemId,
+      to: email,
+      subject: modalContext.subject,
+      message: messageBox.value
+    };
+
+    // memorizza email usata (mock)
+    rememberEmail(email);
+
+    // MOCK dispatcher: console
+    dispatchRequest(payload);
+
+    closeModal();
+  });
+
+  // ESC per chiudere
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.classList.contains("hidden")) closeModal();
+  });
+}
+
+function openRequestModal(item) {
+  if (!modal) return;
+
+  const payload = buildSingleRequestPayload(item);
+  modalContext = {
+    itemId: payload.itemId,
+    itemText: item.text,
+    subject: payload.subject,
+    message: payload.message
+  };
+
+  document.getElementById("modalItemText").innerText = `${item.text} (id: ${item.id})`;
+  document.getElementById("modalMessage").value = payload.message;
+
+  // Precompila con l’ultima email usata (se presente)
+  const last = getLastRememberedEmail();
+  document.getElementById("modalEmail").value = last || "";
+
+  document.getElementById("modalEmailError").classList.add("hidden");
+
+  modal.classList.remove("hidden");
+  modal.setAttribute("aria-hidden", "false");
+
+  // focus sull’email
+  setTimeout(() => document.getElementById("modalEmail").focus(), 0);
+}
+
+function closeModal() {
+  modal.classList.add("hidden");
+  modal.setAttribute("aria-hidden", "true");
+  modalContext = null;
+}
+
+function isValidEmail(email) {
+  // validazione semplice (mock)
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function rememberEmail(email) {
+  try {
+    const raw = localStorage.getItem(REQUEST_EMAILS_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    const next = [email, ...arr.filter(x => x !== email)].slice(0, 5);
+    localStorage.setItem(REQUEST_EMAILS_KEY, JSON.stringify(next));
+  } catch (e) {
+    console.warn("Failed to remember email", e);
+  }
+}
+
+function getLastRememberedEmail() {
+  try {
+    const raw = localStorage.getItem(REQUEST_EMAILS_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return arr[0] || "";
+  } catch {
+    return "";
+  }
 }
