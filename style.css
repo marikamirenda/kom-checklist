@@ -187,3 +187,64 @@ input[type="email"], textarea {
   color: #b91c1c;
   font-size: 12px;
 }
+.dashboard {
+  margin: 10px 0 22px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.dash-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.dash-title {
+  font-weight: 700;
+}
+
+.dash-global {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.dash-sections {
+  display: grid;
+  gap: 10px;
+}
+
+.dash-row {
+  display: grid;
+  grid-template-columns: 1fr 220px 90px;
+  gap: 10px;
+  align-items: center;
+}
+
+.dash-row-title {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.progress {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: #fafafa;
+}
+
+.progress > div {
+  height: 100%;
+  width: 0%;
+  background: #111827;
+}
+
+.dash-row-metric {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: right;
+}
