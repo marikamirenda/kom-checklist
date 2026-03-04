@@ -6,6 +6,38 @@
   <title>KOM Checklist</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+  <!-- MODAL: Richiedi (mock) -->
+<div id="requestModal" class="modal hidden" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <h3 id="modalTitle">Invia reminder (mock)</h3>
+      <button id="modalClose" type="button" class="modal-close">Chiudi</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="modal-row">
+        <div class="modal-label">Item</div>
+        <div id="modalItemText" class="modal-value"></div>
+      </div>
+
+      <div class="modal-row">
+        <label class="modal-label" for="modalEmail">Email destinatario</label>
+        <input id="modalEmail" type="email" placeholder="nome.cognome@azienda.com" />
+        <div id="modalEmailError" class="modal-error hidden">Inserisci un indirizzo email valido.</div>
+      </div>
+
+      <div class="modal-row">
+        <label class="modal-label" for="modalMessage">Messaggio (standard)</label>
+        <textarea id="modalMessage" rows="6"></textarea>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button id="modalSend" type="button">Invia reminder (mock)</button>
+      <button id="modalCancel" type="button" class="btn-secondary">Annulla</button>
+    </div>
+  </div>
+</div>
 <body>
   <header class="header">
     <h1>Project Kick-Off Meeting (KOM) — Internal Best Practice Checklist</h1>
