@@ -19,6 +19,7 @@ function init() {
       renderChecklist(data);
       wireTopButtons();
       initModal(); // modal per Richiedi (email + messaggio) — mock
+      renderDashboard(); // cruscotto completamento
     })
     .catch((err) => console.error("Failed to load checklist.json", err));
 }
@@ -62,7 +63,7 @@ function wireTopButtons() {
     btnClear.addEventListener("click", () => {
       state = {};
       saveState(state);
-      rerender();
+      rerender(); // re-render + dashboard update
     });
   }
 }
@@ -116,6 +117,7 @@ function renderChecklist(data) {
         state[item.id] = checkbox.checked;
         saveState(state);
         requestBtn.disabled = checkbox.checked;
+        renderDashboard(); // update cruscotto
       });
 
       // IMPORTANT: Richiedi apre il modal (mock email)
@@ -134,11 +136,90 @@ function renderChecklist(data) {
 
     container.appendChild(sectionDiv);
   });
+
+  renderDashboard(); // update cruscotto dopo render completo
 }
 
 function rerender() {
   if (!checklistData) return;
   renderChecklist(checklistData);
+}
+
+/* ===================== DASHBOARD (COMPLETION %) ===================== */
+
+function renderDashboard() {
+  const dashWrap = document.getElementById("dashboard");
+  const dashGlobalEl = document.getElementById("dashGlobal");
+  const dashSectionsEl = document.getElementById("dashSections");
+
+  // Se il dashboard non è stato aggiunto in index.html, non fare nulla.
+  if (!dashWrap || !dashGlobalEl || !dashSectionsEl || !checklistData) return;
+
+  const stats = computeCompletionStats(checklistData, state);
+
+  dashGlobalEl.innerText = `${stats.global.percent}%`;
+
+  dashSectionsEl.innerHTML = "";
+  stats.sections.forEach((s) => {
+    const row = document.createElement("div");
+    row.className = "dash-row";
+
+    const title = document.createElement("div");
+    title.className = "dash-row-title";
+    title.innerText = s.title;
+
+    const bar = document.createElement("div");
+    bar.className = "progress";
+
+    const fill = document.createElement("div");
+    fill.style.width = `${s.percent}%`;
+
+    bar.appendChild(fill);
+
+    const metric = document.createElement("div");
+    metric.className = "dash-row-metric";
+    metric.innerText = `${s.done}/${s.total} (${s.percent}%)`;
+
+    row.appendChild(title);
+    row.appendChild(bar);
+    row.appendChild(metric);
+
+    dashSectionsEl.appendChild(row);
+  });
+}
+
+function computeCompletionStats(data, stateObj) {
+  let globalDone = 0;
+  let globalTotal = 0;
+
+  const sections = data.sections.map((sec) => {
+    const total = Array.isArray(sec.items) ? sec.items.length : 0;
+    let done = 0;
+
+    (sec.items || []).forEach((item) => {
+      if (!!stateObj[item.id]) done += 1;
+    });
+
+    globalDone += done;
+    globalTotal += total;
+
+    const percent = total === 0 ? 0 : Math.round((done / total) * 100);
+
+    return {
+      title: sec.title,
+      done,
+      total,
+      percent,
+    };
+  });
+
+  const globalPercent =
+    globalTotal === 0 ? 0 : Math.round((globalDone / globalTotal) * 100);
+
+  return {
+    global: { done: globalDone, total: globalTotal, percent: globalPercent },
+    sections,
+  };
 }
 
 /* ===================== MISSING ITEMS / PAYLOAD ===================== */
@@ -225,7 +306,9 @@ function saveState(obj) {
 /* ===================== EXPORT ===================== */
 
 function downloadJson(obj, filename) {
-  const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+  const blob = new Blob([JSON.stringify(obj, null, 2)], {
+    type: "application/json",
+  });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
@@ -241,7 +324,9 @@ function downloadJson(obj, filename) {
 function initModal() {
   modal = document.getElementById("requestModal");
   if (!modal) {
-    console.warn('Modal not found in DOM: id="requestModal". Inserisci il blocco modal in index.html.');
+    console.warn(
+      'Modal not found in DOM: id="requestModal". Inserisci il blocco modal in index.html.'
+    );
     return;
   }
 
@@ -250,7 +335,9 @@ function initModal() {
   const btnSend = document.getElementById("modalSend");
 
   if (!btnClose || !btnCancel || !btnSend) {
-    console.error("Modal buttons not found. Required IDs: modalClose, modalCancel, modalSend");
+    console.error(
+      "Modal buttons not found. Required IDs: modalClose, modalCancel, modalSend"
+    );
     return;
   }
 
@@ -269,7 +356,9 @@ function initModal() {
     const messageBox = document.getElementById("modalMessage");
 
     if (!emailInput || !error || !messageBox) {
-      console.error("Modal fields not found. Required IDs: modalEmail, modalEmailError, modalMessage");
+      console.error(
+        "Modal fields not found. Required IDs: modalEmail, modalEmailError, modalMessage"
+      );
       return;
     }
 
@@ -302,7 +391,9 @@ function initModal() {
 function openRequestModal(item) {
   // Fallback: se modal non c’è, logga comunque la richiesta standard
   if (!modal) {
-    console.warn("Modal non inizializzato. Fallback: request standard in console (senza email).");
+    console.warn(
+      "Modal non inizializzato. Fallback: request standard in console (senza email)."
+    );
     const payload = buildSingleRequestPayload(item);
     dispatchRequest(payload);
     return;
@@ -323,7 +414,9 @@ function openRequestModal(item) {
   const errEl = document.getElementById("modalEmailError");
 
   if (!itemTextEl || !msgEl || !emailEl || !errEl) {
-    console.error("Modal elements missing. Check IDs: modalItemText, modalMessage, modalEmail, modalEmailError");
+    console.error(
+      "Modal elements missing. Check IDs: modalItemText, modalMessage, modalEmail, modalEmailError"
+    );
     return;
   }
 
