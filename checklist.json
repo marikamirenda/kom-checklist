@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "projectName": "Project X",
+    "defaultDispatch": "MOCK",
+    "notes": "Le azioni reali (Teams/Outlook) verranno collegate via Power Automate nel dispatcher."
+  },
+  "sections": [
+    {
+      "title": "1️⃣ Pre-Kick-Off Preparation (Before the Meeting) — Objectives & Scope Readiness",
+      "items": [
+        { "id": "pre_obj_defined", "text": "Project objectives clearly defined and documented", "request": { "subject": "[KOM] Missing: Project objectives", "message": "Please share the latest document defining the project objectives." } },
+        { "id": "pre_goals_aligned", "text": "Business goals and technical goals aligned", "request": { "subject": "[KOM] Missing: Goals alignment", "message": "Please confirm business and technical goals alignment (or share alignment notes)." } },
+        { "id": "pre_kpis_identified", "text": "Success criteria and KPIs identified", "request": { "subject": "[KOM] Missing: KPIs / success criteria", "message": "Please provide the agreed success criteria and KPIs (or draft for review)." } },
+        { "id": "pre_scope_defined", "text": "Scope clearly defined (in-scope / out-of-scope)", "request": { "subject": "[KOM] Missing: Scope definition", "message": "Please provide in-scope/out-of-scope definition or scope statement." } },
+        { "id": "pre_contract_assumptions", "text": "Contractual assumptions validated", "request": { "subject": "[KOM] Missing: Contract assumptions", "message": "Please confirm contractual assumptions are validated (or share open items)." } },
+        { "id": "pre_constraints_dependencies", "text": "Known constraints and dependencies identified", "request": { "subject": "[KOM] Missing: Constraints/dependencies", "message": "Please share known constraints/dependencies and owners." } },
+        { "id": "pre_open_points_list", "text": "Initial list of open points prepared", "request": { "subject": "[KOM] Missing: Open points list", "message": "Please share the initial list of open points and who owns each item." } }
+      ]
+    },
+    {
+      "title": "1️⃣ Pre-Kick-Off Preparation — Stakeholders, Roles & Governance",
+      "items": [
+        { "id": "pre_stakeholders_validated", "text": "Complete stakeholder list validated (internal & external)", "request": { "subject": "[KOM] Missing: Stakeholder list", "message": "Please provide/confirm the full stakeholder list (internal & external)." } },
+        { "id": "pre_roles_defined", "text": "Roles and responsibilities defined", "request": { "subject": "[KOM] Missing: Roles & responsibilities", "message": "Please share roles/responsibilities definition (draft ok)." } },
+        { "id": "pre_raci_prepared", "text": "RACI matrix prepared", "request": { "subject": "[KOM] Missing: RACI", "message": "Please share the RACI matrix for validation." } },
+        { "id": "pre_decision_makers", "text": "Decision makers identified", "request": { "subject": "[KOM] Missing: Decision makers", "message": "Please confirm decision makers and decision scope." } },
+        { "id": "pre_escalation_path", "text": "Escalation path defined and shared", "request": { "subject": "[KOM] Missing: Escalation path", "message": "Please provide the escalation path and escalation rules." } },
+        { "id": "pre_governance_model", "text": "Project governance model defined", "request": { "subject": "[KOM] Missing: Governance model", "message": "Please share the governance model (steerco, cadence, reporting)." } }
+      ]
+    },
+    {
+      "title": "1️⃣ Pre-Kick-Off Preparation — Agenda & Meeting Design",
+      "items": [
+        { "id": "pre_kom_objectives", "text": "Clear KOM objectives defined", "request": { "subject": "[KOM] Missing: KOM objectives", "message": "Please confirm KOM objectives and expected outcomes." } },
+        { "id": "pre_agenda_shared", "text": "Detailed agenda prepared and shared in advance", "request": { "subject": "[KOM] Missing: Agenda", "message": "Please share the KOM agenda (time-boxed) with outcomes per session." } },
+        { "id": "pre_agenda_timeboxed", "text": "Agenda time-boxed with clear outcomes per session", "request": { "subject": "[KOM] Missing: Time-boxing/outcomes", "message": "Please add time-boxing and session outcomes to the agenda." } },
+        { "id": "pre_qa_time", "text": "Time allocated for discussion and Q&A", "request": { "subject": "[KOM] Missing: Q&A slot", "message": "Please ensure agenda includes dedicated discussion/Q&A slot." } },
+        { "id": "pre_breaks_planned", "text": "Breaks and informal interaction moments planned", "request": { "subject": "[KOM] Missing: Breaks", "message": "Please confirm breaks/informal moments in the agenda." } }
+      ]
+    },
+    {
+      "title": "1️⃣ Pre-Kick-Off Preparation — Documentation Readiness",
+      "items": [
+        { "id": "pre_kickoff_deck", "text": "Kick-Off presentation finalized and internally aligned", "request": { "subject": "[KOM] Missing: Kick-off deck", "message": "Please share the final kick-off deck (internal alignment done)." } },
+        { "id": "pre_docs_versioned", "text": "Key reference documents available and versioned", "request": { "subject": "[KOM] Missing: Reference docs", "message": "Please upload/share key reference docs with version info." } },
+        { "id": "pre_timeline_ready", "text": "Project timeline / milestone plan prepared", "request": { "subject": "[KOM] Missing: Timeline/milestones", "message": "Please provide project timeline and milestone plan." } },
+        { "id": "pre_risk_register", "text": "Risk register pre-populated", "request": { "subject": "[KOM] Missing: Risk register", "message": "Please share the pre-populated risk register (draft ok)." } },
+        { "id": "pre_questions_ready", "text": "Open technical / organizational questions clearly formulated", "request": { "subject": "[KOM] Missing: Open questions", "message": "Please provide the list of open technical/organizational questions." } }
+      ]
+    },
+
+    {
+      "title": "2️⃣ Kick-Off Execution (During the Meeting) — Opening & Alignment",
+      "items": [
+        { "id": "exec_welcome", "text": "Formal welcome and introductions" },
+        { "id": "exec_context", "text": "Project context and rationale explained" },
+        { "id": "exec_objectives_reviewed", "text": "Project objectives and success criteria reviewed" },
+        { "id": "exec_expectations_aligned", "text": "Expectations on collaboration, quality, and timing aligned" }
+      ]
+    },
+    {
+      "title": "2️⃣ Kick-Off Execution — Ways of Working & Governance",
+      "items": [
+        { "id": "exec_roles_reviewed", "text": "Roles and responsibilities reviewed" },
+        { "id": "exec_raci_validated", "text": "RACI matrix explained and validated" },
+        { "id": "exec_decision_process", "text": "Decision-making process clarified" },
+        { "id": "exec_channels_confirmed", "text": "Communication channels confirmed" },
+        { "id": "exec_cadence_reporting", "text": "Meeting cadence and reporting agreed" },
+        { "id": "exec_approval_workflow", "text": "Document approval workflow explained" }
+      ]
+    },
+    {
+      "title": "2️⃣ Kick-Off Execution — Scope, Technical & Product Alignment",
+      "items": [
+        { "id": "exec_scope_confirmed", "text": "Scope breakdown reviewed and confirmed" },
+        { "id": "exec_assumptions_validated", "text": "Key assumptions validated" },
+        { "id": "exec_missing_inputs", "text": "Missing inputs or definitions clearly identified" },
+        { "id": "exec_interfaces_dependencies", "text": "Interfaces and dependencies discussed" },
+        { "id": "exec_samples_inputs", "text": "Required samples, data, or inputs identified with owners and deadlines" }
+      ]
+    },
+    {
+      "title": "2️⃣ Kick-Off Execution — Architecture, Interfaces & Integration",
+      "items": [
+        { "id": "exec_arch_reviewed", "text": "End-to-end solution / system architecture reviewed" },
+        { "id": "exec_interfaces_clarified", "text": "Internal and external interfaces clarified" },
+        { "id": "exec_interface_responsibilities", "text": "Responsibilities for interfaces assigned" },
+        { "id": "exec_3rd_party_deps", "text": "Third-party dependencies acknowledged" },
+        { "id": "exec_integration_risks", "text": "Integration risks discussed" }
+      ]
+    },
+    {
+      "title": "2️⃣ Kick-Off Execution — KPIs, Quality & Acceptance Criteria",
+      "items": [
+        { "id": "exec_perf_kpis", "text": "Performance KPIs reviewed and agreed" },
+        { "id": "exec_quality_definitions", "text": "Quality criteria and definitions aligned" },
+        { "id": "exec_acceptance_criteria", "text": "Acceptance criteria clarified (FAT, SAT, milestones)" },
+        { "id": "exec_measurement_methods", "text": "Measurement methods agreed" },
+        { "id": "exec_grey_areas", "text": "Grey areas documented as open points" }
+      ]
+    },
+    {
+      "title": "2️⃣ Kick-Off Execution — Risk Assessment & Mitigation",
+      "items": [
+        { "id": "exec_risks_discussed", "text": "Key risks presented and discussed" },
+        { "id": "exec_risk_level_type", "text": "Risk level and type identified" },
+        { "id": "exec_mitigation_actions", "text": "Mitigation actions defined" },
+        { "id": "exec_risk_owners", "text": "Owners assigned for each risk" },
+        { "id": "exec_customer_actions", "text": "Customer / stakeholder actions clearly requested" }
+      ]
+    },
+    {
+      "title": "2️⃣ Kick-Off Execution — Compliance, Safety & Regulations (if applicable)",
+      "items": [
+        { "id": "exec_regulations", "text": "Applicable regulations and standards identified" },
+        { "id": "exec_safety_approach", "text": "Safety approach aligned" },
+        { "id": "exec_compliance_resp", "text": "Compliance responsibilities clarified" },
+        { "id": "exec_reg_open_topics", "text": "Open regulatory topics captured" },
+        { "id": "exec_followup_reviews", "text": "Follow-up reviews planned" }
+      ]
+    },
+
+    {
+      "title": "3️⃣ Planning Confirmation — Timeline & Milestones",
+      "items": [
+        { "id": "plan_timeline_reviewed", "text": "Project timeline reviewed milestone by milestone" },
+        { "id": "plan_critical_path", "text": "Critical path identified" },
+        { "id": "plan_deps_constraints", "text": "Dependencies and constraints acknowledged" },
+        { "id": "plan_delivery_dates", "text": "Key delivery dates aligned" },
+        { "id": "plan_long_lead", "text": "Long-lead items confirmed" }
+      ]
+    },
+    {
+      "title": "3️⃣ Planning Confirmation — Testing, Installation & Support (if applicable)",
+      "items": [
+        { "id": "plan_testing_strategy", "text": "Testing strategy explained" },
+        { "id": "plan_acceptance_process", "text": "Acceptance process clarified" },
+        { "id": "plan_deployment_approach", "text": "Installation or deployment approach aligned" },
+        { "id": "plan_training_needs", "text": "Training needs identified" },
+        { "id": "plan_support_model", "text": "After-sales / support model explained" }
+      ]
+    },
+
+    {
+      "title": "4️⃣ Closure of the Kick-Off Meeting — Decisions & Next Steps",
+      "items": [
+        { "id": "close_decisions", "text": "Key decisions summarized" },
+        { "id": "close_open_points", "text": "Open points list validated" },
+        { "id": "close_actions_assigned", "text": "Actions, owners, and deadlines clearly assigned" },
+        { "id": "close_next_milestones", "text": "Next milestones confirmed" }
+      ]
+    },
+    {
+      "title": "4️⃣ Closure of the Kick-Off Meeting — Formal Closure",
+      "items": [
+        { "id": "close_shared_understanding", "text": "Shared understanding confirmed" },
+        { "id": "close_collaboration_mindset", "text": "Collaboration mindset reinforced" },
+        { "id": "close_next_communication", "text": "Next communication step explained" }
+      ]
+    },
+
+    {
+      "title": "5️⃣ Post-Kick-Off Follow-Up (After the Meeting)",
+      "items": [
+        { "id": "post_mom_issued", "text": "Minutes of Meeting (MoM) issued and shared" },
+        { "id": "post_actions_tracked", "text": "Decisions and actions tracked in project tools" },
+        { "id": "post_docs_uploaded", "text": "Documents uploaded to shared repository" },
+        { "id": "post_governance_activated", "text": "Governance cadence activated" },
+        { "id": "post_risks_monitored", "text": "Risks and open points actively monitored" }
+      ]
+    }
+  ]
+}
