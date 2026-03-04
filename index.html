@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KOM Checklist</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Project Kick-Off Meeting (KOM) — Internal Best Practice Checklist</h1>
+    <p class="sub">Mock-up: checkbox + richieste su item non completati (nessuna integrazione attiva).</p>
+  </header>
+
+  <section class="topbar">
+    <button id="btnRequestMissing" type="button">Richiedi mancanti</button>
+    <button id="btnExportState" type="button">Esporta stato (JSON)</button>
+    <button id="btnClear" type="button">Reset flags</button>
+  </section>
+
+  <main id="checklist" class="checklist"></main>
+
+  <footer class="footer">
+    <small>Nota: lo stato è salvato in localStorage del browser.</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
